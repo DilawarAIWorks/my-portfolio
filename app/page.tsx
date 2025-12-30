@@ -61,7 +61,7 @@ const Portfolio = () => {
     // UPDATED PATH BELOW:
     // Next.js automatically maps "/" to the "public" folder.
     // So "/assets/resume.pdf" looks inside "public/assets/resume.pdf"
-    link.href = 'assets/resume.pdf'; 
+    link.href = 'assets/dilawarshah_resume.pdf'; 
     
     link.download = 'Dilawar_Shah_Resume.pdf';
     document.body.appendChild(link);
