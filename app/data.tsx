@@ -80,9 +80,10 @@ export const skills: Skill[] = [
 ];
 
 export const certifications: Certification[] = [
-  { name: 'Python for Everybody', year: '2024', link: 'https://www.coursera.org/account/accomplishments/specialization/WRS2SO7BYAJR' },
-  { name: 'Supervised Machine Learning', year: '2024', link: 'https://www.coursera.org/account/accomplishments/verify/IET7Z96KFT3L' },
-  { name: 'Operating Systems Power User', year: '2024', link: 'https://www.coursera.org/account/accomplishments/verify/Q9K7PAR3VGYL' },
-  { name: 'Linux Commands & Shell', year: '2024', link: 'https://www.coursera.org/account/accomplishments/verify/T77BH2C6ERSH' },
-  { name: 'Bash Scripting in Linux', year: '2024', link: 'https://www.coursera.org/account/accomplishments/verify/YDC9WZ3SXH27?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=project' }
+  { name: 'Microsoft Certified: Azure AI Fundamentals', year: '2026', link: 'https://learn.microsoft.com/en-us/users/dilawarshah-8071/credentials/4bf2970c186d06d' },
+  { name: 'Python for Everybody', year: '2025', link: 'https://www.coursera.org/account/accomplishments/specialization/WRS2SO7BYAJR' },
+  { name: 'Supervised Machine Learning', year: '2025', link: 'https://www.coursera.org/account/accomplishments/verify/IET7Z96KFT3L' },
+  { name: 'Operating Systems Power User', year: '2023', link: 'https://www.coursera.org/account/accomplishments/verify/Q9K7PAR3VGYL' },
+  { name: 'Linux Commands & Shell', year: '2023', link: 'https://www.coursera.org/account/accomplishments/verify/T77BH2C6ERSH' },
+  { name: 'Bash Scripting in Linux', year: '2023', link: 'https://www.coursera.org/account/accomplishments/verify/YDC9WZ3SXH27?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=project' }
 ];
