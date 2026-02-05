@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Menu, X, FileText, Download } from 'lucide-react';
+import Link from 'next/link'; // <--- Added import for page navigation
 
 interface NavbarProps {
   darkMode: boolean;
@@ -21,7 +22,8 @@ const Navbar: React.FC<NavbarProps> = ({
   setCursorVariant
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navItems = ['Home', 'About', 'Projects', 'Skills', 'Contact'];
+  // 'Journey' is in the list, but we will treat it differently in the map function
+  const navItems = ['Home', 'About', 'Projects', 'Skills', 'Journey', 'Contact'];
 
   const handleScroll = (item: string) => {
     scrollToSection(item);
@@ -37,25 +39,44 @@ const Navbar: React.FC<NavbarProps> = ({
             className="font-bold text-2xl tracking-tighter cursor-none"
             onMouseEnter={() => setCursorVariant('text')} onMouseLeave={() => setCursorVariant('default')}
           >
-            Dilawar<span className="text-blue-500">.</span>
+            <Link href="/">
+              Dilawar<span className="text-blue-500">.</span>
+            </Link>
           </motion.div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <button
-                key={item}
-                onClick={() => handleScroll(item)}
-                onMouseEnter={() => setCursorVariant('hover')}
-                onMouseLeave={() => setCursorVariant('default')}
-                className={`text-sm font-medium transition-all relative py-1 hover:text-blue-500 ${activeSection === item.toLowerCase() ? 'text-blue-500' : 'text-slate-500 dark:text-slate-400'}`}
-              >
-                {item}
-                {activeSection === item.toLowerCase() && (
-                  <motion.span layoutId="activeSection" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />
-                )}
-              </button>
-            ))}
+            {navItems.map((item) => {
+              // LOGIC: If item is "Journey", make it a Link. Otherwise, make it a Scroll Button.
+              if (item === 'Journey') {
+                return (
+                  <Link 
+                    key={item} 
+                    href="/journey"
+                    onMouseEnter={() => setCursorVariant('hover')}
+                    onMouseLeave={() => setCursorVariant('default')}
+                    className="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-blue-500 transition-colors py-1"
+                  >
+                    {item}
+                  </Link>
+                );
+              }
+              
+              return (
+                <button
+                  key={item}
+                  onClick={() => handleScroll(item)}
+                  onMouseEnter={() => setCursorVariant('hover')}
+                  onMouseLeave={() => setCursorVariant('default')}
+                  className={`text-sm font-medium transition-all relative py-1 hover:text-blue-500 ${activeSection === item.toLowerCase() ? 'text-blue-500' : 'text-slate-500 dark:text-slate-400'}`}
+                >
+                  {item}
+                  {activeSection === item.toLowerCase() && (
+                    <motion.span layoutId="activeSection" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />
+                  )}
+                </button>
+              );
+            })}
             
             <div className="h-6 w-px bg-slate-300 dark:bg-slate-700 mx-2" />
 
@@ -100,13 +121,23 @@ const Navbar: React.FC<NavbarProps> = ({
           >
             <div className="px-4 py-6 space-y-4">
               {navItems.map((item) => (
-                <button
-                  key={item}
-                  onClick={() => handleScroll(item)}
-                  className="block w-full text-left text-lg font-medium hover:text-blue-500 transition-colors"
-                >
-                  {item}
-                </button>
+                item === 'Journey' ? (
+                  <Link
+                    key={item}
+                    href="/journey"
+                    className="block w-full text-left text-lg font-medium hover:text-blue-500 transition-colors"
+                  >
+                    {item}
+                  </Link>
+                ) : (
+                  <button
+                    key={item}
+                    onClick={() => handleScroll(item)}
+                    className="block w-full text-left text-lg font-medium hover:text-blue-500 transition-colors"
+                  >
+                    {item}
+                  </button>
+                )
               ))}
               <button 
                 onClick={handleDownloadResume}
