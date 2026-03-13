@@ -77,8 +77,8 @@ export const projects: Project[] = [
   {
     id: '3',
     title: 'RAG Knowledge Agent',
-    description: 'Enterprise-grade RAG pipeline using LangChain & LangGraph. Ingests PDFs/Docs, creates vector embeddings, and provides context-aware answers via LLMs.',
-    tags: ['LangChain', 'LangGraph', 'RAG', 'Vector Search'],
+    description: 'Enterprise-grade RAG pipeline. Ingests PDFs/Docs, creates vector embeddings, and provides context-aware answers via LLMs.',
+    tags: ['RAG', 'Vector Search'],
     category: 'ai',
     date: '2025'
   },
