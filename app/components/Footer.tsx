@@ -7,8 +7,11 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ darkMode }) => {
   return (
-    <footer className={`py-8 text-center text-sm border-t relative z-10 ${darkMode ? 'border-slate-800 text-slate-500' : 'border-slate-200 text-slate-500'}`}>
-      <p>© 2026 Dilawar Shah. Crafted with precision using Next.js & React.</p>
+    <footer className={`relative z-10 border-t px-4 py-8 text-sm ${darkMode ? 'border-white/10 text-slate-400' : 'border-slate-200 text-slate-500'}`}>
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 sm:flex-row">
+        <p>© 2026 Dilawar Shah. AI engineering, automation, and full-stack software.</p>
+        <p className="font-semibold text-slate-600 dark:text-slate-300">Built with Next.js, React, Tailwind CSS, and Framer Motion.</p>
+      </div>
     </footer>
   );
 };

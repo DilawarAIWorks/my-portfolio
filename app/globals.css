@@ -3,26 +3,89 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 15, 23, 42;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 241, 245, 249;
+  --surface-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.dark {
+  --foreground-rgb: 226, 232, 240;
+  --background-start-rgb: 2, 6, 23;
+  --background-end-rgb: 8, 13, 28;
+  --surface-rgb: 15, 23, 42;
+}
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-start-rgb));
+  background:
+    linear-gradient(180deg, rgb(var(--background-start-rgb)) 0%, rgb(var(--background-end-rgb)) 100%);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* Ensure full height for the app to allow scrolling logic to work */
-html, body {
-  height: 100%;
-  scroll-behavior: smooth;
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(20, 184, 166, 0.55) transparent;
+}
+
+::selection {
+  background: rgba(20, 184, 166, 0.28);
+  color: inherit;
+}
+
+@layer components {
+  .section-shell {
+    @apply relative z-10 px-4 py-20 sm:py-24;
+  }
+
+  .section-inner {
+    @apply mx-auto max-w-6xl;
+  }
+
+  .eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-teal-600 dark:text-teal-300;
+  }
+
+  .section-title {
+    @apply font-display text-3xl font-bold tracking-normal text-slate-950 dark:text-white sm:text-4xl;
+  }
+
+  .section-copy {
+    @apply mt-4 max-w-2xl text-base leading-7 text-slate-600 dark:text-slate-300;
+  }
+
+  .premium-panel {
+    @apply rounded-lg border border-slate-200/80 bg-white/80 shadow-[0_18px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl transition-all duration-300 dark:border-white/10 dark:bg-slate-950/60 dark:shadow-[0_18px_70px_rgba(0,0,0,0.24)];
+  }
+
+  .premium-panel-hover {
+    @apply hover:-translate-y-1 hover:border-teal-400/55 hover:shadow-[0_24px_80px_rgba(15,118,110,0.16)] dark:hover:border-teal-300/35 dark:hover:shadow-[0_24px_80px_rgba(45,212,191,0.08)];
+  }
+
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-950;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Backgrounds from '../components/Backgrounds';
 import { journeyData } from '../data';
 import { 
   ArrowLeft, Calendar, Link as LinkIcon, 
@@ -135,16 +136,8 @@ export default function JourneyPage() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-700 font-sans ${darkMode ? 'dark bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
-      
-      {/* Backgrounds */}
-      <div className={`fixed inset-0 z-0 transition-opacity duration-700 ${darkMode ? 'opacity-100' : 'opacity-0'}`}>
-         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-[#0a0f1e] to-black"></div>
-         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 brightness-100 contrast-150"></div>
-      </div>
-      <div className={`fixed inset-0 z-0 transition-opacity duration-700 ${darkMode ? 'opacity-0' : 'opacity-100'}`}>
-         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100"></div>
-      </div>
+    <div className={`min-h-screen overflow-hidden transition-colors duration-700 font-sans ${darkMode ? 'dark bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+      <Backgrounds darkMode={darkMode} />
 
       <Navbar 
         darkMode={darkMode} 
@@ -155,19 +148,20 @@ export default function JourneyPage() {
         setCursorVariant={emptyFunc}
       />
 
-      <main className="relative z-10 pt-32 pb-24 px-4 max-w-3xl mx-auto">
-        <div className="mb-16">
+      <main className="relative z-10 mx-auto max-w-4xl px-4 pb-24 pt-32">
+        <div className="mb-14">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
-              My Journey
+            <span className="eyebrow">Journey</span>
+            <h1 className="font-display text-4xl font-bold tracking-normal text-slate-950 dark:text-white md:text-6xl">
+              Building skill in public.
             </h1>
-            <p className="text-slate-600 dark:text-slate-300 text-lg">
-              A timeline of code, milestones, and everything in between.
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+              A timeline of AI projects, certifications, automation experiments, and the technical milestones behind the portfolio.
             </p>
           </motion.div>
         </div>
 
-        <div className="relative border-l-2 border-slate-200 dark:border-slate-800 ml-3 md:ml-0 space-y-16">
+        <div className="relative ml-3 space-y-12 border-l border-slate-200 dark:border-white/10 md:ml-0">
           {journeyData.map((item, index) => (
             <motion.div 
               key={item.id}
@@ -178,23 +172,23 @@ export default function JourneyPage() {
               className="relative pl-8 md:pl-12 group"
             >
               {/* Dot */}
-              <div className="absolute -left-[9px] top-0 w-5 h-5 rounded-full border-4 border-slate-50 dark:border-slate-950 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)] z-10"></div>
+              <div className="absolute -left-[7px] top-1 z-10 h-3.5 w-3.5 rounded-full border-2 border-slate-50 bg-teal-500 shadow-[0_0_18px_rgba(20,184,166,0.45)] dark:border-slate-950"></div>
               
               {/* Date */}
-              <div className="text-sm font-mono text-slate-500 dark:text-slate-400 mb-3 uppercase tracking-wider font-semibold">
+              <div className="mb-3 text-sm font-bold uppercase tracking-[0.22em] text-slate-500 dark:text-slate-400">
                 {item.date}
               </div>
 
               {/* Card */}
-              <div className="p-6 rounded-2xl border transition-all duration-300 bg-white dark:bg-[#111827] border-slate-200 dark:border-slate-800 shadow-lg dark:shadow-none hover:border-blue-500/50 hover:shadow-xl">
+              <div className="premium-panel premium-panel-hover p-5 sm:p-6">
                 
                 {/* Header */}
                 <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{item.title}</h3>
-                  <span className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wide border 
-                    ${item.category === 'milestone' ? 'bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800' :
-                      item.category === 'project' ? 'bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/20 dark:text-blue-300 dark:border-blue-800' :
-                      'bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/20 dark:text-purple-300 dark:border-purple-800'}`}>
+                  <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">{item.title}</h3>
+                  <span className={`rounded-md border px-3 py-1 text-[11px] font-bold uppercase tracking-wide 
+                    ${item.category === 'milestone' ? 'bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-400/10 dark:text-amber-300 dark:border-amber-300/20' :
+                      item.category === 'project' ? 'bg-teal-100 text-teal-700 border-teal-200 dark:bg-teal-400/10 dark:text-teal-300 dark:border-teal-300/20' :
+                      'bg-sky-100 text-sky-700 border-sky-200 dark:bg-sky-400/10 dark:text-sky-300 dark:border-sky-300/20'}`}>
                     {item.category}
                   </span>
                 </div>
@@ -208,7 +202,7 @@ export default function JourneyPage() {
 
                 {/* Image */}
                 {item.image && (
-                  <div className="mb-6 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-black/40">
+                  <div className="mb-6 overflow-hidden rounded-lg border border-slate-200 bg-slate-100 dark:border-white/10 dark:bg-black/40">
                     <img src={item.image} alt={item.imageAlt} className="w-full h-auto object-cover max-h-96 hover:scale-105 transition-transform duration-500" />
                   </div>
                 )}
@@ -227,7 +221,7 @@ export default function JourneyPage() {
                   <div className="flex flex-wrap gap-2 mb-6">
                     {item.tags.map(tag => (
                       <span key={tag} className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2.5 py-1 rounded-md">
-                        <Hash className="w-3 h-3 text-slate-400" /> {tag}
+                        <Hash className="w-3 h-3 text-teal-500" /> {tag}
                       </span>
                     ))}
                   </div>
@@ -242,7 +236,7 @@ export default function JourneyPage() {
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 hover:bg-blue-600 hover:text-white hover:border-blue-600 group/btn"
+                        className="focus-ring inline-flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 transition-all hover:border-teal-600 hover:bg-teal-600 hover:text-white dark:border-white/10 dark:bg-white/[0.04] dark:text-slate-200 dark:hover:border-teal-400 dark:hover:bg-teal-500 group/btn"
                       >
                         {/* Use custom icon from data if present, else fallback to type logic */}
                         {link.icon ? link.icon : getLinkIcon(link.type)}

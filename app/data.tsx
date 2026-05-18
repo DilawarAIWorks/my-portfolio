@@ -59,7 +59,7 @@ export const projects: Project[] = [
   {
     id: '1',
     title: 'Hair Loss Detection System',
-    description: 'AI-powered diagnostic tool utilizing ResNet50V2 & DenseNet169 to analyze scalp health. Features real-time computer vision analysis and NLP-based user interaction.',
+    description: 'AI-powered diagnostic tool using ResNet50V2 and DenseNet169 to analyze scalp health, combining real-time computer vision with NLP-based user interaction.',
     tags: ['Python', 'ResNet50V2', 'Computer Vision', 'NLP', 'TensorFlow'],
     github: 'https://github.com/DilawarAIWorks/FYP-VersionControl',
     category: 'ai',
@@ -68,7 +68,7 @@ export const projects: Project[] = [
   {
     id: '2',
     title: 'Agri-Tech Disease Classification',
-    description: 'Developed a high-precision CNN model (95% accuracy) for Tomato Leaf Disease detection using MobileNet and VGG architectures to assist modern farming.',
+    description: 'High-precision CNN model with 95% accuracy for tomato leaf disease detection, using MobileNet and VGG architectures to support practical agriculture AI.',
     tags: ['TensorFlow', 'MobileNet', 'VGG', 'Deep Learning'],
     demo: 'https://drive.google.com/drive/folders/1T6J3Anm8COFOwTWuQ8H59LU4IVMC5PDu',
     category: 'ml',
@@ -77,15 +77,15 @@ export const projects: Project[] = [
   {
     id: '3',
     title: 'RAG Knowledge Agent',
-    description: 'Enterprise-grade RAG pipeline. Ingests PDFs/Docs, creates vector embeddings, and provides context-aware answers via LLMs.',
-    tags: ['RAG', 'Vector Search'],
+    description: 'Enterprise-style RAG pipeline that ingests PDFs and documents, creates vector embeddings, and provides context-aware answers through LLM-powered retrieval.',
+    tags: ['RAG', 'Vector Search', 'LLM Agents', 'Embeddings'],
     category: 'ai',
     date: '2025'
   },
   {
     id: '4',
     title: 'Python Game Suite',
-    description: 'Interactive portfolio of Python games (Snake, Pong, Quiz) demonstrating mastery of OOP principles, event handling, and graphical logic.',
+    description: 'Interactive suite of Python games including Snake, Pong, and Quiz, demonstrating OOP principles, event handling, and clean graphical logic.',
     tags: ['Python', 'OOP', 'Turtle', 'Game Dev'],
     github: 'https://github.com/DilawarShah25',
     category: 'web',

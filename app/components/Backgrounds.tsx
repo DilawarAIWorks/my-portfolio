@@ -8,34 +8,36 @@ interface BackgroundsProps {
 
 const Backgrounds: React.FC<BackgroundsProps> = ({ darkMode }) => {
   return (
-    <>
-      {/* Dark Mode Background: Starry/Grid */}
-      <div className={`fixed inset-0 z-0 transition-opacity duration-700 ${darkMode ? 'opacity-100' : 'opacity-0'}`}>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black"></div>
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[128px]"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px]"></div>
+    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      <div className={`absolute inset-0 transition-opacity duration-700 ${darkMode ? 'opacity-100' : 'opacity-0'}`}>
+        <div className="absolute inset-0 bg-[#020617]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:72px_72px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(115deg,transparent_0%,rgba(20,184,166,0.12)_34%,transparent_48%,rgba(245,158,11,0.08)_72%,transparent_100%)]" />
+        <motion.div
+          animate={{ x: ['-18%', '12%', '-18%'] }}
+          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute left-[-18%] top-20 h-24 w-[145%] rotate-[-8deg] bg-[linear-gradient(90deg,transparent,rgba(20,184,166,0.2),rgba(125,211,252,0.1),transparent)] blur-2xl"
+        />
+        <motion.div
+          animate={{ x: ['10%', '-10%', '10%'] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-28 left-[-12%] h-20 w-[125%] rotate-[7deg] bg-[linear-gradient(90deg,transparent,rgba(250,204,21,0.12),rgba(45,212,191,0.12),transparent)] blur-2xl"
+        />
       </div>
 
-      {/* Light Mode Background: "Fascinating" Auroras */}
-      <div className={`fixed inset-0 z-0 transition-opacity duration-700 ${darkMode ? 'opacity-0' : 'opacity-100'}`}>
-        {/* Soft gradient base */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-100"></div>
-        {/* Moving Auroras */}
-        <motion.div 
-          animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-1/2 -left-1/2 w-[100vw] h-[100vw] bg-gradient-to-r from-blue-200/40 to-cyan-200/40 rounded-full blur-[100px]"
+      <div className={`absolute inset-0 transition-opacity duration-700 ${darkMode ? 'opacity-0' : 'opacity-100'}`}>
+        <div className="absolute inset-0 bg-[#f8fafc]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.06)_1px,transparent_1px)] bg-[size:64px_64px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.85)_0%,transparent_26%,rgba(20,184,166,0.08)_52%,rgba(245,158,11,0.08)_78%,rgba(255,255,255,0.8)_100%)]" />
+        <motion.div
+          animate={{ x: ['-12%', '9%', '-12%'] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-24 left-[-10%] h-16 w-[118%] rotate-[-6deg] bg-[linear-gradient(90deg,transparent,rgba(20,184,166,0.18),rgba(14,165,233,0.12),transparent)] blur-xl"
         />
-        <motion.div 
-          animate={{ rotate: -360, scale: [1, 1.2, 1] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-1/2 -right-1/2 w-[100vw] h-[100vw] bg-gradient-to-r from-purple-200/40 to-pink-200/40 rounded-full blur-[100px]"
-        />
-        {/* Texture overlay for premium feel */}
-        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-40 mix-blend-soft-light"></div>
       </div>
-    </>
+
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0)_0%,rgba(2,6,23,0.06)_48%,rgba(2,6,23,0.16)_100%)] dark:bg-[linear-gradient(180deg,rgba(2,6,23,0.05)_0%,rgba(2,6,23,0.4)_100%)]" />
+    </div>
   );
 };
 

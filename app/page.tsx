@@ -10,6 +10,44 @@ import Skills from './components/Skills';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://dilawarshah.dev';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Dilawar Shah',
+  url: siteUrl,
+  jobTitle: 'AI Engineer and Full-Stack Developer',
+  email: 'mailto:dilawarextra1122@gmail.com',
+  sameAs: [
+    'https://github.com/DilawarAIWorks',
+    'https://github.com/DilawarShah25',
+    'https://www.linkedin.com/in/dilawar-shah-544674238',
+  ],
+  knowsAbout: [
+    'Retrieval-Augmented Generation',
+    'RAG knowledge agents',
+    'Computer vision',
+    'Workflow automation',
+    'n8n automation',
+    'LangChain',
+    'TensorFlow',
+    'React and Next.js',
+    'Azure AI',
+  ],
+  makesOffer: [
+    {
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: 'AI automation and RAG development',
+        description:
+          'Custom AI agents, retrieval-augmented generation pipelines, computer vision applications, and full-stack automation workflows.',
+      },
+    },
+  ],
+};
+
 const Portfolio = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [activeSection, setActiveSection] = useState('home');
@@ -41,8 +79,8 @@ const Portfolio = () => {
   const cursorY = useSpring(mouseY, { stiffness: 500, damping: 28 });
 
   const cursorVariants = {
-    default: { height: 32, width: 32, opacity: 1, backgroundColor: "transparent", border: "2px solid rgba(59, 130, 246, 0.5)" },
-    hover: { height: 60, width: 60, opacity: 1, backgroundColor: darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.05)", border: "0px solid transparent" },
+    default: { height: 30, width: 30, opacity: 1, backgroundColor: "transparent", border: "1px solid rgba(20, 184, 166, 0.62)" },
+    hover: { height: 58, width: 58, opacity: 1, backgroundColor: darkMode ? "rgba(20, 184, 166, 0.12)" : "rgba(15, 23, 42, 0.06)", border: "0px solid transparent" },
     text: { height: 100, width: 100, opacity: 1, backgroundColor: darkMode ? "rgba(255, 255, 255, 0.9)" : "rgba(0, 0, 0, 0.9)", mixBlendMode: "difference" as const }
   };
 
@@ -68,61 +106,68 @@ const Portfolio = () => {
   };
 
   return (
-    // @ts-ignore
-    <div className={`relative min-h-screen transition-colors duration-700 font-sans selection:bg-blue-500/30 ${darkMode ? 'dark bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
-      
-      <Backgrounds darkMode={darkMode} />
-
-      {/* Scroll Progress Bar */}
-      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 origin-left z-[10001]" style={{ scaleX }} />
-
-      {/* --- Advanced Custom Cursor --- */}
-      <motion.div
-        className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full hidden md:flex items-center justify-center mix-blend-difference"
-        style={{ x: cursorX, y: cursorY, translateX: '-50%', translateY: '-50%' }}
-        // @ts-ignore
-        animate={cursorVariant}
-        variants={cursorVariants}
-        transition={{ type: "spring", stiffness: 500, damping: 28 }}
-      >
-        <div className="w-1 h-1 bg-white rounded-full absolute" />
-      </motion.div>
-
-      <Navbar 
-        darkMode={darkMode} 
-        setDarkMode={setDarkMode} 
-        activeSection={activeSection}
-        scrollToSection={scrollToSection}
-        handleDownloadResume={handleDownloadResume}
-        setCursorVariant={setCursorVariant}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
 
-      <Hero 
-        darkMode={darkMode} 
-        scrollToSection={scrollToSection} 
-        handleDownloadResume={handleDownloadResume}
-        setCursorVariant={setCursorVariant}
-      />
+      <div className={`relative min-h-screen overflow-hidden transition-colors duration-700 font-sans ${darkMode ? 'dark bg-slate-950 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+        
+        <Backgrounds darkMode={darkMode} />
 
-      <About 
-        darkMode={darkMode} 
-        setCursorVariant={setCursorVariant} 
-      />
+        {/* Scroll Progress Bar */}
+        <motion.div className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-teal-400 via-sky-400 to-amber-300 origin-left z-[10001]" style={{ scaleX }} />
 
-      <Projects 
-        darkMode={darkMode} 
-        setCursorVariant={setCursorVariant} 
-      />
+        {/* --- Advanced Custom Cursor --- */}
+        <motion.div
+          className="fixed top-0 left-0 z-[9999] pointer-events-none rounded-full hidden md:flex items-center justify-center mix-blend-difference"
+          style={{ x: cursorX, y: cursorY, translateX: '-50%', translateY: '-50%' }}
+          animate={cursorVariant}
+          variants={cursorVariants}
+          transition={{ type: "spring", stiffness: 500, damping: 28 }}
+        >
+          <div className="w-1 h-1 bg-white rounded-full absolute" />
+        </motion.div>
 
-      <Skills darkMode={darkMode} />
+        <Navbar 
+          darkMode={darkMode} 
+          setDarkMode={setDarkMode} 
+          activeSection={activeSection}
+          scrollToSection={scrollToSection}
+          handleDownloadResume={handleDownloadResume}
+          setCursorVariant={setCursorVariant}
+        />
 
-      <Contact 
-        darkMode={darkMode} 
-        setCursorVariant={setCursorVariant} 
-      />
+        <main>
+          <Hero 
+            darkMode={darkMode} 
+            scrollToSection={scrollToSection} 
+            handleDownloadResume={handleDownloadResume}
+            setCursorVariant={setCursorVariant}
+          />
 
-      <Footer darkMode={darkMode} />
-    </div>
+          <About 
+            darkMode={darkMode} 
+            setCursorVariant={setCursorVariant} 
+          />
+
+          <Projects 
+            darkMode={darkMode} 
+            setCursorVariant={setCursorVariant} 
+          />
+
+          <Skills darkMode={darkMode} />
+
+          <Contact 
+            darkMode={darkMode} 
+            setCursorVariant={setCursorVariant} 
+          />
+        </main>
+
+        <Footer darkMode={darkMode} />
+      </div>
+    </>
   );
 };
 

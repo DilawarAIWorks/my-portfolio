@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Send } from 'lucide-react';
+import { Github, Linkedin, Mail, Send, Sparkles } from 'lucide-react';
 
 interface ContactProps {
   darkMode: boolean;
@@ -19,87 +19,102 @@ const Contact: React.FC<ContactProps> = ({ darkMode, setCursorVariant }) => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative z-10">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" className="section-shell">
+      <div className="section-inner">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`p-8 md:p-12 rounded-[2rem] border overflow-hidden relative ${darkMode ? 'bg-slate-950 border-slate-800' : 'bg-white border-slate-200 shadow-2xl shadow-blue-500/10'}`}
+          className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]"
         >
-          {/* Glow effect */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-[80px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/20 rounded-full blur-[80px] pointer-events-none" />
-
-          <div className="text-center mb-10 relative z-10">
-            <h2 className="text-4xl font-bold mb-4">Let's Connect</h2>
-            <p className="text-slate-500">
-              Ready to start a project? Send me a message directly at <br/>
-              <span className="text-blue-500 font-semibold selection:bg-purple-500 selection:text-white">dilawarextra1122@gmail.com</span>
+          <div className="relative">
+            <span className="eyebrow">Contact</span>
+            <h2 className="section-title">Bring the AI idea, I will help shape the system.</h2>
+            <p className="section-copy">
+              Need a RAG chatbot, AI automation workflow, computer vision model, or a full-stack AI web app?
+              Send the brief and I will reply at{' '}
+              <span className="font-bold text-teal-600 dark:text-teal-300">dilawarextra1122@gmail.com</span>.
             </p>
+
+            <div className="mt-8 grid gap-3">
+              {[
+                'AI agent and RAG pipeline development',
+                'Computer vision and TensorFlow model projects',
+                'n8n workflow automation and full-stack delivery',
+              ].map((item) => (
+                <div key={item} className={`flex items-center gap-3 rounded-md border px-4 py-3 text-sm font-bold ${darkMode ? 'border-white/10 bg-white/[0.04]' : 'border-slate-200 bg-white/75'}`}>
+                  <Sparkles className="h-4 w-4 text-amber-500" />
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex gap-3">
+              {[
+                { icon: <Github />, link: "https://github.com/DilawarAIWorks", label: 'GitHub' },
+                { icon: <Linkedin />, link: "https://www.linkedin.com/in/dilawar-shah-544674238", label: 'LinkedIn' },
+                { icon: <Mail />, link: "mailto:dilawarextra1122@gmail.com", label: 'Email' }
+              ].map((social) => (
+                <motion.a
+                  key={social.label}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  whileHover={{ y: -3 }}
+                  onMouseEnter={() => setCursorVariant('hover')} onMouseLeave={() => setCursorVariant('default')}
+                  className={`focus-ring grid h-11 w-11 place-items-center rounded-md border transition-all ${darkMode ? 'border-white/10 bg-white/[0.04] text-slate-200 hover:border-teal-300/50 hover:text-teal-200' : 'border-slate-200 bg-white text-slate-700 hover:border-teal-400 hover:text-teal-700'}`}
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
+            </div>
           </div>
 
-          <div className="flex justify-center gap-6 mb-12 relative z-10">
-             {[
-               { icon: <Github />, link: "https://github.com/DilawarAIWorks" },
-               { icon: <Linkedin />, link: "https://www.linkedin.com/in/dilawar-shah-544674238" },
-               { icon: <Mail />, link: "mailto:dilawarextra1122@gmail.com" }
-             ].map((social, i) => (
-               <motion.a
-                 key={i}
-                 href={social.link}
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 whileHover={{ y: -5 }}
-                 onMouseEnter={() => setCursorVariant('hover')} onMouseLeave={() => setCursorVariant('default')}
-                 className={`p-4 rounded-2xl border transition-all ${darkMode ? 'bg-slate-900 border-slate-800 hover:bg-blue-600 hover:border-blue-500 hover:text-white' : 'bg-slate-50 border-slate-200 hover:bg-blue-600 hover:text-white hover:shadow-lg'}`}
-               >
-                 {social.icon}
-               </motion.a>
-             ))}
-          </div>
-
-          <form className="space-y-4 relative z-10" onSubmit={handleSendEmail}>
+          <form className="premium-panel space-y-4 p-5 sm:p-6" onSubmit={handleSendEmail}>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium ml-1">Your Name</label>
+                <label className="text-sm font-bold ml-1" htmlFor="contact-name">Your Name</label>
                 <input 
+                  id="contact-name"
                   required
                   type="text" 
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                   placeholder="John Doe" 
-                  className={`w-full px-4 py-4 rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${darkMode ? 'bg-slate-900/50 border-slate-800 placeholder-slate-600' : 'bg-slate-50 border-slate-200 placeholder-slate-400'}`} 
+                  className={`focus-ring w-full rounded-md border px-4 py-4 transition-all ${darkMode ? 'border-white/10 bg-white/[0.04] placeholder-slate-600' : 'border-slate-200 bg-slate-50 placeholder-slate-400'}`} 
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-sm font-medium ml-1">Your Email</label>
+                <label className="text-sm font-bold ml-1" htmlFor="contact-email">Your Email</label>
                 <input 
+                  id="contact-email"
                   required
                   type="email" 
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
                   placeholder="john@example.com" 
-                  className={`w-full px-4 py-4 rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${darkMode ? 'bg-slate-900/50 border-slate-800 placeholder-slate-600' : 'bg-slate-50 border-slate-200 placeholder-slate-400'}`} 
+                  className={`focus-ring w-full rounded-md border px-4 py-4 transition-all ${darkMode ? 'border-white/10 bg-white/[0.04] placeholder-slate-600' : 'border-slate-200 bg-slate-50 placeholder-slate-400'}`} 
                 />
               </div>
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium ml-1">Message</label>
+              <label className="text-sm font-bold ml-1" htmlFor="contact-message">Message</label>
               <textarea 
+                id="contact-message"
                 required
                 rows={4} 
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
-                placeholder="Tell me about your project..." 
-                className={`w-full px-4 py-4 rounded-xl border focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${darkMode ? 'bg-slate-900/50 border-slate-800 placeholder-slate-600' : 'bg-slate-50 border-slate-200 placeholder-slate-400'}`} 
+                placeholder="Tell me about your project, data, workflow, and deadline..." 
+                className={`focus-ring w-full resize-none rounded-md border px-4 py-4 transition-all ${darkMode ? 'border-white/10 bg-white/[0.04] placeholder-slate-600' : 'border-slate-200 bg-slate-50 placeholder-slate-400'}`} 
               />
             </div>
             <motion.button
-              whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+              whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}
               onMouseEnter={() => setCursorVariant('hover')} onMouseLeave={() => setCursorVariant('default')}
               type="submit"
-              className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-bold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow flex items-center justify-center gap-2"
+              className="focus-ring flex w-full items-center justify-center gap-2 rounded-md bg-slate-950 py-4 font-bold text-white shadow-lg shadow-slate-950/20 transition-all hover:bg-teal-600 dark:bg-white dark:text-slate-950 dark:hover:bg-teal-200"
             >
               <Send className="w-5 h-5" /> Send Message
             </motion.button>
